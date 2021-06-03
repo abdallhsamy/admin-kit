@@ -27,6 +27,10 @@ laravel starter project
 - [ ] chart generator
 - [ ] auto updater from repo
 - [ ] realtime user chat
+- [ ] system email viewer
+- [ ] visit log
+- [ ] analytics
+- [ ] login as another user (for supper admins  | impersonate user :D)  
 
 ### phase one todo
 - [ ] Users
