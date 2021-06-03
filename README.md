@@ -22,3 +22,4 @@ laravel starter project
 - [ ] media file manager
 - [ ] saas support with tenancy
 - [ ] newsletter
+- [ ] widget manager
