@@ -1,6 +1,33 @@
 # admin-kit
 laravel starter project
 
+## usage 
+[documentation coming soon](#)
+
+## installation
+```bash
+git clone git@github.com:abdallhsamy/admin-kit.git
+```
+```bash
+cd admin-kit
+```
+```bash
+composer install
+```
+```bash
+npm install
+```
+```bash
+npm run dev
+```
+```bash
+cp .env.example .env
+```
+- add your database credentials 
+```bash
+php artisan admin:install
+```
+
 ## TODO:
 - [ ] modularity system
 - [ ] crud generator
@@ -73,4 +100,8 @@ laravel starter project
 - [ ] Animated Loader
 
 
+## screenshots
+
+
+![Dashboard](./screenshots/dashboard.png)
 
