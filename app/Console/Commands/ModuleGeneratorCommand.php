@@ -34,14 +34,6 @@ class ModuleGeneratorCommand extends Command
 
         $this->generateData();
 
-
-//
-//        $module = $this->argument('module');
-//        $arguments = $this->arguments();
-//        $model = $this->option('model');
-//        $this->info('The command was successful!');
-//        $this->info("Sending email to: {$module}!");
-
         return 0;
     }
 
@@ -112,35 +104,74 @@ class ModuleGeneratorCommand extends Command
 
     protected function generateEntities()
     {
-        $command = 'module:make ' . $this->module;
-
-        $options = $this->options();
-
-        foreach($options as $option=> $val){
-            if ($val) {
-                $command .= ' --' . $option;
-            }
+        foreach ($this->entities as $model) {
+            $this->generateModel($model);
+            $this->generateController($model);
+            $this->generateFactory($model);
+            $this->generateRequests($model);
+            $this->generateApiResources($model);
+            $this->generateSeed($model);
+            $this->generateTest($model);
         }
+    }
+
+    protected function generateModel($model)
+    {
+        $command = "module:make-model -m {$model} {$this->module}";
 
         Artisan::call($command);
-/*
-module:make-controller
-//module:make-event
-module:make-factory
-//module:make-job
-module:make-listener
-//module:make-mail
-//module:make-middleware
-module:make-migration
-module:make-model
-//module:make-notification
-//module:make-policy
-module:make-provider
-module:make-request
-module:make-resource
-//module:make-rule
-module:make-seed
-module:make-test*/
+    }
 
+    protected function generateController($model)
+    {
+        $command = "module:make-controller {$model}Controller {$this->module}";
+
+        Artisan::call($command);
+    }
+
+    protected function generateFactory($model)
+    {
+        $command = "module:make-factory {$model}Factory {$this->module}";
+
+        Artisan::call($command);
+    }
+
+    protected function generateRequests($model)
+    {
+        $actions = ['Store', 'Update'];
+
+        foreach ($actions as $action) {
+            $command = "module:make-request {$model}/$action{$model}Request {$this->module}";
+
+            Artisan::call($command);
+        }
+    }
+
+    protected function generateApiResources($model)
+    {
+        $resources = [
+            "{$model}Resource",
+            "{$model}Collection",
+        ];
+
+        foreach ($resources as $resource) {
+            $command = "module:make-resource {$model}/$resource {$this->module}";
+
+            Artisan::call($command);
+        }
+    }
+
+    protected function generateSeed($model)
+    {
+        $command = "module:make-seed {$model}Seeder {$this->module}";
+
+        Artisan::call($command);
+    }
+
+    protected function generateTest($model)
+    {
+        $command = "module:make-test {$model}Test {$this->module}";
+
+        Artisan::call($command);
     }
 }
