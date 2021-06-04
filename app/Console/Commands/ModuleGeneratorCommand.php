@@ -32,13 +32,7 @@ class ModuleGeneratorCommand extends Command
     {
         $this->askForDetails();
 
-        $this->info($this->module);
-
-        foreach ($this->entities as $entity) {
-            $this->info($entity);
-        }
-
-        $this->info($this->translatable);
+        $this->generateData();
 
 
 //
@@ -103,7 +97,7 @@ class ModuleGeneratorCommand extends Command
 
     protected function generateModule()
     {
-        $command = 'module:make' . $this->module;
+        $command = 'module:make ' . $this->module;
 
         $options = $this->options();
 
@@ -124,10 +118,29 @@ class ModuleGeneratorCommand extends Command
 
         foreach($options as $option=> $val){
             if ($val) {
-                $command .= ' ' . $option;
+                $command .= ' --' . $option;
             }
         }
 
         Artisan::call($command);
+/*
+module:make-controller
+//module:make-event
+module:make-factory
+//module:make-job
+module:make-listener
+//module:make-mail
+//module:make-middleware
+module:make-migration
+module:make-model
+//module:make-notification
+//module:make-policy
+module:make-provider
+module:make-request
+module:make-resource
+//module:make-rule
+module:make-seed
+module:make-test*/
+
     }
 }
