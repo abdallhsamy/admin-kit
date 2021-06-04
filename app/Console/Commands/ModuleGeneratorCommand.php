@@ -131,7 +131,7 @@ class ModuleGeneratorCommand extends Command
 
     protected function generateFactory($model)
     {
-        $command = "module:make-factory {$model}Factory {$this->module}";
+        $command = "module:make-factory {$model} {$this->module}";
 
         Artisan::call($command);
     }
@@ -163,7 +163,7 @@ class ModuleGeneratorCommand extends Command
 
     protected function generateSeed($model)
     {
-        $command = "module:make-seed {$model}Seeder {$this->module}";
+        $command = "module:make-seed {$model} {$this->module}";
 
         Artisan::call($command);
     }
