@@ -109,7 +109,7 @@ class ModuleGeneratorCommand extends Command
 
         foreach($options as $option=> $val){
             if ($val) {
-                $command .= ' ' . $option;
+                $command .= ' --' . $option;
             }
         }
 
@@ -118,7 +118,7 @@ class ModuleGeneratorCommand extends Command
 
     protected function generateEntities()
     {
-        $command = 'module:make' . $this->module;
+        $command = 'module:make ' . $this->module;
 
         $options = $this->options();
 
